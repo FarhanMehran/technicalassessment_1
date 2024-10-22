@@ -47,12 +47,13 @@ class FilteredImageViewModel: ObservableObject {
         }
     }
 
-    // Apply selected Core Image filter to main image
-    func applySelectedFilter(_ filter: CIFilter) {
-        imageFilter.applyFilter(to: mainImage, brightness: 0.0, filter: filter) { filteredImage in
+    // Apply selected Core Image filter to main image with strength
+    func applySelectedFilter(_ filter: CIFilter, strength: Float) {
+        imageFilter.applyFilter(to: mainImage, brightness: Float(strength), filter: filter) { filteredImage in
             DispatchQueue.main.async {
                 self.filteredMainImage = filteredImage
             }
         }
     }
 }
+
